@@ -119,7 +119,7 @@ var handle_req = function (req, res) {
         return res.end();
     }
 
-    var match = hostname.match(/^([a-z]{4})[.].*/);
+    var match = hostname.match(/^([a-z]+)[.].*/);
     if (match) {
         var client_id = match[1];
         var client = clients[client_id];
@@ -146,7 +146,7 @@ var handle_req = function (req, res) {
     // at this point, the client is requesting a new tunnel setup
     // either generate an id or use the one they requested
 
-    var match = req.url.match(/\/([a-z]{4})?/);
+    var match = req.url.match(/\/([a-z]+)?/);
 
     // user can request a particular set of characters
     // will be given if not already taken
