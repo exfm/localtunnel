@@ -1,0 +1,10 @@
+{
+  "author": "exfm",
+  "name": "localtunnel-example",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "socket.io": "0.9.10",
+    "express": "2.5.8"
+  }
+}
