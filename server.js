@@ -131,7 +131,6 @@ var handle_req = function (req, res) {
             return res.end();
         }
 
-        log.trace('Proxying request to: ' +  client_id);
         return proxy_request(client, req, res);
     }
 
@@ -191,10 +190,11 @@ var handle_req = function (req, res) {
     var conn_timeout;
 
     // user has 5 seconds to connect before their slot is given up
-    // function maybe_tcp_close() {
-    //     conn_timeout = setTimeout(client_server.close.bind(client_server), 5000);
-    // }
-    // maybe_tcp_close();
+    function maybe_tcp_close() {
+        conn_timeout = setTimeout(client_server.close.bind(client_server), 5000);
+    }
+
+    maybe_tcp_close();
 
     // no longer accepting connections for this id
     client_server.on('close', function() {
