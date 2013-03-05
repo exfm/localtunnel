@@ -23,7 +23,6 @@ var parsers = http.parsers;
 // send this request to the appropriate client
 // in -> incoming request stream
 function proxy_request(client, req, res, rs, ws) {
-
     rs = rs || req.createRawStream();
     ws = ws || res.createRawStream();
 
@@ -57,7 +56,7 @@ function proxy_request(client, req, res, rs, ws) {
     // the tcp socket is free again
     parser.onIncoming = function (res) {
         parser.onMessageComplete = function() {
-            log.info('ended response: %s', req.url);
+            log.info('ended response: %s %s', req.url, new Date());
 
             // any request we had going on is now done
             ws.end();
@@ -82,7 +81,7 @@ function proxy_request(client, req, res, rs, ws) {
 
 function upstream_response(d, start, end) {
     var socket = this;
-    log.trace('upstream_response %s %s %s', d, start, end);
+    // log.trace('upstream_response %s %s %s', d, start, end);
     var ws = socket.ws;
     if (!ws) {
         log.warn('no stream set for req:', socket.req.url);
