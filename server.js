@@ -82,7 +82,7 @@ function proxy_request(client, req, res, rs, ws) {
 
 function upstream_response(d, start, end) {
     var socket = this;
-
+    log.trace('upstream_response %s %s %s', d, start, end);
     var ws = socket.ws;
     if (!ws) {
         log.warn('no stream set for req:', socket.req.url);
